@@ -18,6 +18,11 @@ public class Control_GameManager : MonoBehaviour
     // 道路间隔距离
     public int roadDistance;
     
+    // 按照顺序的障碍列表
+    private List<GameObject> newObjList1 = new List<GameObject>();
+    private List<GameObject> newObjList2 = new List<GameObject>();
+    private List<GameObject> newObjList3 = new List<GameObject>();
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -67,6 +72,9 @@ public class Control_GameManager : MonoBehaviour
         }
         
         objDict[roadName].Clear();
+        newObjList1.Clear();
+        newObjList2.Clear();
+        newObjList3.Clear();
 
         List<GameObject> prefabList = new List<GameObject>();
         List<Vector3> posList = new List<Vector3>();
@@ -80,7 +88,7 @@ public class Control_GameManager : MonoBehaviour
         posList.Add(pos1);
 
         // 添加障碍物
-        for(int i = 1; i < 13; i++)
+        for(int i = 1; i < 12; i++)
         {
             GameObject prefab = objPrefabList[Random.Range(0, objPrefabList.Count)];
             Vector3 pos = RandomBarrierPosition(index);
@@ -158,15 +166,35 @@ public class Control_GameManager : MonoBehaviour
         {
             GameObject obj = Instantiate(prefabList[i], posList[i], Quaternion.identity);
             obj.tag = "Obstacle";
-            objDict[roadName].Add(obj);
+            if (obj.transform.position.x == -2.4f)
+            {
+                newObjList1.Add(obj);
+            }
+            else if (obj.transform.position.x == 0)
+            {
+                newObjList2.Add(obj);
+            }
+            else
+            {
+                newObjList3.Add(obj);
+            }
         }
-        
+        SortDict(newObjList1);
+        SortDict(newObjList2);
+        SortDict(newObjList3);
+        newObjList1.AddRange(newObjList2);
+        newObjList1.AddRange(newObjList3);
+
+        foreach (GameObject item in newObjList1)
+        {
+            objDict[roadName].Add(item);
+        }
+
         List<GameObject> coinList = new List<GameObject>();
         coinList.Clear();
-        SortObjDict(roadName);
         for (int i = 1; i < objDict[roadName].Count; i++)
         {
-            if (objDict[roadName][i - 1].transform.position.x == objDict[roadName][i].transform.position.x)
+            if (System.Math.Abs(objDict[roadName][i - 1].transform.position.x - objDict[roadName][i].transform.position.x) < 0.001)
             {
                 if ((objDict[roadName][i].name.Length == 13 && objDict[roadName][i - 1].name.Length == 17) ||
                     (objDict[roadName][i].name.Length == 17 && objDict[roadName][i - 1].name.Length == 13))
@@ -180,7 +208,6 @@ public class Control_GameManager : MonoBehaviour
                             obj = Instantiate(coin,
                                 new Vector3(objDict[roadName][i].transform.position.x, 0,
                                     objDict[roadName][i - 1].transform.position.z + 3.0f * n), Quaternion.identity);
-                            Debug.Log("里面打印硬币");
                             coinList.Add(obj);
                             n++;
                         } while (objDict[roadName][i].transform.position.z - obj.transform.position.z > 10.0f && n < 5);
@@ -198,7 +225,6 @@ public class Control_GameManager : MonoBehaviour
                             obj = Instantiate(coin,
                                 new Vector3(objDict[roadName][i].transform.position.x, 0,
                                     objDict[roadName][i - 1].transform.position.z + 3.0f * n), Quaternion.identity);
-                            Debug.Log("里面打印硬币");
                             coinList.Add(obj);
                             n++;
                         } while (objDict[roadName][i].transform.position.z - obj.transform.position.z > 20.0f && n < 5);
@@ -210,9 +236,8 @@ public class Control_GameManager : MonoBehaviour
                 for (int j = 0; j < 4; j++)
                 {
                     GameObject obj = Instantiate(coin,
-                        new Vector3(objDict[roadName][i].transform.position.x, 0,
+                        new Vector3(objDict[roadName][i - 1].transform.position.x, 0,
                             objDict[roadName][i - 1].transform.position.z + 3.0f * (j + 1)), Quaternion.identity);
-                    Debug.Log("打印硬币");
                     coinList.Add(obj); 
                 }
             }
@@ -231,36 +256,6 @@ public class Control_GameManager : MonoBehaviour
     }
 
     // 障碍物排序
-    public void SortObjDict(string roadName)
-    {
-        List<GameObject> newObjList1 = new List<GameObject>();
-        List<GameObject> newObjList2 = new List<GameObject>();
-        List<GameObject> newObjList3 = new List<GameObject>();
-        foreach (GameObject item in objDict[roadName])
-        {
-            if (item.transform.position.x == -2.4f)
-            {
-                newObjList1.Add(item);
-            }
-            else if (item.transform.position.x == 0)
-            {
-                newObjList2.Add(item);
-            }
-            else
-            {
-                newObjList3.Add(item);
-            }
-        }
-        SortDict(newObjList1);
-        SortDict(newObjList2);
-        SortDict(newObjList3);
-        newObjList1.AddRange(newObjList2);
-        newObjList1.AddRange(newObjList3);
-        // Debug.Log(newObjList1[0].transform.position);
-        // Debug.Log(newObjList1[1].transform.position);
-        // Debug.Log(newObjList1[2].transform.position);
-    }
-
     public void SortDict(List<GameObject> newObjList)
     {
         for (int i = 0; i < newObjList.Count; i++)
