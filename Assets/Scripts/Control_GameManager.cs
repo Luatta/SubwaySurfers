@@ -13,23 +13,29 @@ public class Control_GameManager : MonoBehaviour
     public List<GameObject> objPrefabList = new List<GameObject>();
     // 目前的障碍物
     Dictionary<string, List<GameObject>> objDict = new Dictionary<string, List<GameObject>>();
+    // 目前的金币
+    Dictionary<string, List<GameObject>> coinDict = new Dictionary<string, List<GameObject>>();
     // 金币
     public GameObject coin; 
     // 道路间隔距离
     public int roadDistance;
     
     // 按照顺序的障碍列表
-    private List<GameObject> newObjList1 = new List<GameObject>();
-    private List<GameObject> newObjList2 = new List<GameObject>();
-    private List<GameObject> newObjList3 = new List<GameObject>();
-    
+    List<GameObject> newObjList1 = new List<GameObject>();
+    List<GameObject> newObjList2 = new List<GameObject>();
+    List<GameObject> newObjList3 = new List<GameObject>();
+    // 金币列表
+    List<GameObject> coinList = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
         foreach(Transform road in roadList)
         {
             List<GameObject> objList = new List<GameObject>();
+            List<GameObject> coinListt = new List<GameObject>();
             objDict.Add(road.name, objList);
+            coinDict.Add(road.name, coinListt);
         }
         initRoad(0);
         initRoad(1);
@@ -70,17 +76,21 @@ public class Control_GameManager : MonoBehaviour
         {
             Destroy(obj);
         }
-        
         objDict[roadName].Clear();
+        foreach (GameObject item in coinDict[roadName])
+        {
+            Destroy(item);
+        }
+        coinDict[roadName].Clear();
         newObjList1.Clear();
         newObjList2.Clear();
         newObjList3.Clear();
+        coinList.Clear();
 
         List<GameObject> prefabList = new List<GameObject>();
         List<Vector3> posList = new List<Vector3>();
         prefabList.Clear();
         posList.Clear();
-        bool flag = true;
 
         GameObject prefab1 = objPrefabList[Random.Range(0, objPrefabList.Count)];
         Vector3 pos1 = RandomBarrierPosition(index);
@@ -93,64 +103,36 @@ public class Control_GameManager : MonoBehaviour
             GameObject prefab = objPrefabList[Random.Range(0, objPrefabList.Count)];
             Vector3 pos = RandomBarrierPosition(index);
 
-            for (int j = 0; j < posList.Count; j++)
+            int j;
+            for (j = 0; j < posList.Count; j++)
             {
                 if (prefab.name.StartsWith("Roadblock") && prefabList[j].name.StartsWith("Roadblock") &&
-                    System.Math.Abs(pos.z - posList[j].z) < 10.0f)
+                    System.Math.Abs(pos.z - posList[j].z) < 10.0f) break;
+                if (prefab.name.Length == 6)
                 {
-                    flag = false;
-                    break;
+                    if (prefabList[j].name.Length == 6 && System.Math.Abs(pos.z - posList[j].z) < 7.0f) break;
+                    else if (prefabList[j].name.Length == 7 && System.Math.Abs(pos.z - posList[j].z) < 12.0f) break;
+                }
+                if (prefab.name.Length == 7)
+                {
+                    if (prefabList[j].name.Length == 6 && System.Math.Abs(pos.z - posList[j].z) < 12.0f) break;
+                    if (prefabList[j].name.Length == 7 && System.Math.Abs(pos.z - posList[j].z) < 15.0f) break;
                 }
 
-                if (prefab.name.StartsWith("Train") && prefabList[j].name.StartsWith("Train"))
+                if (prefab.name.StartsWith("Roadblock") && prefabList[j].name.StartsWith("Train"))
                 {
-                    if (prefab.name.Length == 6)
-                    {
-                        if (prefabList[j].name.Length == 6 && System.Math.Abs(pos.z - posList[j].z) < 7.0f)
-                        {
-                            flag = false;
-                            break;
-                        }
-                        else if (prefabList[j].name.Length == 7 && System.Math.Abs(pos.z - posList[j].z) < 12.0f)
-                        {
-                            flag = false;
-                            break;
-                        }
-                    }
-                    if (prefab.name.Length == 7)
-                    {
-                        if (prefabList[j].name.Length == 6 && System.Math.Abs(pos.z - posList[j].z) < 12.0f)
-                        {
-                            flag = false;
-                            break;
-                        }
-                        else if (prefabList[j].name.Length == 7 && System.Math.Abs(pos.z - posList[j].z) < 15.0f)
-                        {
-                            flag = false;
-                            break;
-                        }
-                    } 
+                    if (prefabList[j].name.Length == 6 && System.Math.Abs(pos.z - posList[j].z) < 4.0f) break;
+                    if (prefabList[j].name.Length == 7 && System.Math.Abs(pos.z - posList[j].z) < 7.0f) break;
                 }
-
-                if ((prefab.name.StartsWith("Roadblock") && prefabList[j].name.StartsWith("Train")) ||
-                    (prefab.name.StartsWith("Train") && prefabList[j].name.StartsWith("Roadblock")))
+                
+                if (prefab.name.StartsWith("Train") && prefabList[j].name.StartsWith("Roadblock"))
                 {
-                    if ((prefab.name.Length == 6 || prefabList[j].name.Length == 6) &&
-                        System.Math.Abs(pos.z - posList[j].z) < 3.0f)
-                    {
-                        flag = false;
-                        break;
-                    }
-                    else if ((prefab.name.Length == 7 || prefabList[j].name.Length == 7) &&
-                             System.Math.Abs(pos.z - posList[j].z) < 6.0f)
-                    {
-                        flag = false;
-                        break;
-                    }
+                    if (prefab.name.Length == 6 && System.Math.Abs(pos.z - posList[j].z) < 4.0f) break;
+                    if (prefab.name.Length == 7 && System.Math.Abs(pos.z - posList[j].z) < 7.0f) break;
                 }
             }
 
-            if (flag)
+            if (j == posList.Count)
             {
                 prefabList.Add(prefab);
                 posList.Add(pos);
@@ -158,7 +140,6 @@ public class Control_GameManager : MonoBehaviour
             else
             {
                 i--;
-                flag = true;
             }
         }
 
@@ -189,46 +170,24 @@ public class Control_GameManager : MonoBehaviour
         {
             objDict[roadName].Add(item);
         }
-
-        List<GameObject> coinList = new List<GameObject>();
-        coinList.Clear();
+        
+        // 添加金币
         for (int i = 1; i < objDict[roadName].Count; i++)
         {
-            if (System.Math.Abs(objDict[roadName][i - 1].transform.position.x - objDict[roadName][i].transform.position.x) < 0.001)
+            if (System.Math.Abs(objDict[roadName][i - 1].transform.position.x -
+                                objDict[roadName][i].transform.position.x) < 0.001)
             {
-                if ((objDict[roadName][i].name.Length == 13 && objDict[roadName][i - 1].name.Length == 17) ||
-                    (objDict[roadName][i].name.Length == 17 && objDict[roadName][i - 1].name.Length == 13))
+                if (objDict[roadName][i].transform.position.z - objDict[roadName][i - 1].transform.position.z > 15.0f)
                 {
-                    if (objDict[roadName][i].transform.position.z - objDict[roadName][i - 1].transform.position.z > 10.0f)
+                    GameObject obj;
+                    int n = 1;
+                    do
                     {
-                        GameObject obj;
-                        int n = 1;
-                        do
-                        {
-                            obj = Instantiate(coin,
-                                new Vector3(objDict[roadName][i].transform.position.x, 0,
-                                    objDict[roadName][i - 1].transform.position.z + 3.0f * n), Quaternion.identity);
-                            coinList.Add(obj);
-                            n++;
-                        } while (objDict[roadName][i].transform.position.z - obj.transform.position.z > 10.0f && n < 5);
-                    }
-                }
-                if ((objDict[roadName][i].name.Length == 14 && objDict[roadName][i - 1].name.Length == 17) ||
-                    (objDict[roadName][i].name.Length == 17 && objDict[roadName][i - 1].name.Length == 14))
-                {
-                    if (objDict[roadName][i].transform.position.z - objDict[roadName][i - 1].transform.position.z > 20.0f)
-                    {
-                        GameObject obj;
-                        int n = 1;
-                        do
-                        {
-                            obj = Instantiate(coin,
-                                new Vector3(objDict[roadName][i].transform.position.x, 0,
-                                    objDict[roadName][i - 1].transform.position.z + 3.0f * n), Quaternion.identity);
-                            coinList.Add(obj);
-                            n++;
-                        } while (objDict[roadName][i].transform.position.z - obj.transform.position.z > 20.0f && n < 5);
-                    }
+                        obj = Instantiate(coin, new Vector3(objDict[roadName][i].transform.position.x, 0,
+                            objDict[roadName][i - 1].transform.position.z + 3.0f * n), Quaternion.identity);
+                        coinList.Add(obj);
+                        n++;
+                    } while (objDict[roadName][i].transform.position.z - obj.transform.position.z > 10.0f && n < 5);
                 }
             }
             else
@@ -241,6 +200,11 @@ public class Control_GameManager : MonoBehaviour
                     coinList.Add(obj); 
                 }
             }
+        }
+
+        foreach (GameObject coinItem in coinList)
+        {
+            coinDict[roadName].Add(coinItem);
         }
     }
     
