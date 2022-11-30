@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{609C74D2-D166-697B-43D2-FD590704895B}</ProjectGuid>
+    <ProjectGuid>{D449656A-FFE6-48D1-0CA0-DB4D45423B17}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp</AssemblyName>
@@ -62,33 +62,32 @@
      <Compile Include="Assets\Scripts\Control_GameManager.cs" />
      <Compile Include="Assets\Scripts\Control_Player.cs" />
      <None Include="Assets\POLYGON city pack\Read_me.txt" />
-     <None Include="Assets\Material\ground.shader" />
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>D:/xiazai/Unityfolder/2019.4.16f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -268,7 +267,7 @@
  <HintPath>D:/xiazai/Unityfolder/2019.4.16f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.XRModule.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/PackageCache/com.unity.ext.nunit@1.0.5/net35/unity-custom/nunit.framework.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/PackageCache/com.unity.ext.nunit@1.0.5/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="netstandard">
  <HintPath>D:/xiazai/Unityfolder/2019.4.16f1c1/Editor/Data/NetStandard/ref/2.0.0/netstandard.dll</HintPath>

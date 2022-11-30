@@ -13,6 +13,8 @@ public class Control_GameManager : MonoBehaviour
     public List<GameObject> objPrefabList = new List<GameObject>();
     // 目前的障碍物
     Dictionary<string, List<GameObject>> objDict = new Dictionary<string, List<GameObject>>();
+    // 金币
+    public GameObject coin; 
     // 道路间隔距离
     public int roadDistance;
     
@@ -101,7 +103,7 @@ public class Control_GameManager : MonoBehaviour
                             flag = false;
                             break;
                         }
-                        else if (prefabList[j].name.Length == 7 && System.Math.Abs(pos.z - posList[j].z) < 10.0f)
+                        else if (prefabList[j].name.Length == 7 && System.Math.Abs(pos.z - posList[j].z) < 12.0f)
                         {
                             flag = false;
                             break;
@@ -109,12 +111,12 @@ public class Control_GameManager : MonoBehaviour
                     }
                     if (prefab.name.Length == 7)
                     {
-                        if (prefabList[j].name.Length == 6 && System.Math.Abs(pos.z - posList[j].z) < 10.0f)
+                        if (prefabList[j].name.Length == 6 && System.Math.Abs(pos.z - posList[j].z) < 12.0f)
                         {
                             flag = false;
                             break;
                         }
-                        else if (prefabList[j].name.Length == 7 && System.Math.Abs(pos.z - posList[j].z) < 13.0f)
+                        else if (prefabList[j].name.Length == 7 && System.Math.Abs(pos.z - posList[j].z) < 15.0f)
                         {
                             flag = false;
                             break;
@@ -158,6 +160,63 @@ public class Control_GameManager : MonoBehaviour
             obj.tag = "Obstacle";
             objDict[roadName].Add(obj);
         }
+        
+        List<GameObject> coinList = new List<GameObject>();
+        coinList.Clear();
+        SortObjDict(roadName);
+        for (int i = 1; i < objDict[roadName].Count; i++)
+        {
+            if (objDict[roadName][i - 1].transform.position.x == objDict[roadName][i].transform.position.x)
+            {
+                if ((objDict[roadName][i].name.Length == 13 && objDict[roadName][i - 1].name.Length == 17) ||
+                    (objDict[roadName][i].name.Length == 17 && objDict[roadName][i - 1].name.Length == 13))
+                {
+                    if (objDict[roadName][i].transform.position.z - objDict[roadName][i - 1].transform.position.z > 10.0f)
+                    {
+                        GameObject obj;
+                        int n = 1;
+                        do
+                        {
+                            obj = Instantiate(coin,
+                                new Vector3(objDict[roadName][i].transform.position.x, 0,
+                                    objDict[roadName][i - 1].transform.position.z + 3.0f * n), Quaternion.identity);
+                            Debug.Log("里面打印硬币");
+                            coinList.Add(obj);
+                            n++;
+                        } while (objDict[roadName][i].transform.position.z - obj.transform.position.z > 10.0f && n < 5);
+                    }
+                }
+                if ((objDict[roadName][i].name.Length == 14 && objDict[roadName][i - 1].name.Length == 17) ||
+                    (objDict[roadName][i].name.Length == 17 && objDict[roadName][i - 1].name.Length == 14))
+                {
+                    if (objDict[roadName][i].transform.position.z - objDict[roadName][i - 1].transform.position.z > 20.0f)
+                    {
+                        GameObject obj;
+                        int n = 1;
+                        do
+                        {
+                            obj = Instantiate(coin,
+                                new Vector3(objDict[roadName][i].transform.position.x, 0,
+                                    objDict[roadName][i - 1].transform.position.z + 3.0f * n), Quaternion.identity);
+                            Debug.Log("里面打印硬币");
+                            coinList.Add(obj);
+                            n++;
+                        } while (objDict[roadName][i].transform.position.z - obj.transform.position.z > 20.0f && n < 5);
+                    }
+                }
+            }
+            else
+            {
+                for (int j = 0; j < 4; j++)
+                {
+                    GameObject obj = Instantiate(coin,
+                        new Vector3(objDict[roadName][i].transform.position.x, 0,
+                            objDict[roadName][i - 1].transform.position.z + 3.0f * (j + 1)), Quaternion.identity);
+                    Debug.Log("打印硬币");
+                    coinList.Add(obj); 
+                }
+            }
+        }
     }
     
     //障碍物随机位置
@@ -168,7 +227,53 @@ public class Control_GameManager : MonoBehaviour
         int m = (int)(roadList[index].position.z);
         int j = Random.Range(5 + m, 95 + m);
         Vector3 targetPos = new Vector3(xChoice[i],0,j);
-        // Debug.Log(targetPos);
         return targetPos;
+    }
+
+    // 障碍物排序
+    public void SortObjDict(string roadName)
+    {
+        List<GameObject> newObjList1 = new List<GameObject>();
+        List<GameObject> newObjList2 = new List<GameObject>();
+        List<GameObject> newObjList3 = new List<GameObject>();
+        foreach (GameObject item in objDict[roadName])
+        {
+            if (item.transform.position.x == -2.4f)
+            {
+                newObjList1.Add(item);
+            }
+            else if (item.transform.position.x == 0)
+            {
+                newObjList2.Add(item);
+            }
+            else
+            {
+                newObjList3.Add(item);
+            }
+        }
+        SortDict(newObjList1);
+        SortDict(newObjList2);
+        SortDict(newObjList3);
+        newObjList1.AddRange(newObjList2);
+        newObjList1.AddRange(newObjList3);
+        // Debug.Log(newObjList1[0].transform.position);
+        // Debug.Log(newObjList1[1].transform.position);
+        // Debug.Log(newObjList1[2].transform.position);
+    }
+
+    public void SortDict(List<GameObject> newObjList)
+    {
+        for (int i = 0; i < newObjList.Count; i++)
+        {
+            for (int j = i; j < newObjList.Count; j++){
+                if ( newObjList[i].transform.position.z > newObjList[j].transform.position.z )
+                { 
+                    GameObject temp = newObjList[i];
+                    newObjList[i] = newObjList[j];
+                    newObjList[j] = temp;
+                }
+            }  
+        }
+        
     }
 }

@@ -12,7 +12,7 @@
     <ProductVersion>10.0.20506</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <RootNamespace></RootNamespace>
-    <ProjectGuid>{0B6FE710-E31B-1776-24BA-365354B768AD}</ProjectGuid>
+    <ProjectGuid>{8FB66430-F415-764E-CBD1-3EAF0E48E776}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <AssemblyName>Assembly-CSharp-Editor</AssemblyName>
@@ -60,37 +60,37 @@
   <ItemGroup>
      <Compile Include="Assets\Blink\Art\Characters\LowPoly\Editor\MaterialTilingOffset.cs" />
  <Reference Include="UnityEditor.TestRunner">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/ScriptAssemblies/UnityEditor.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.TestRunner">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/ScriptAssemblies/UnityEngine.TestRunner.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline.Editor">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.VSCode.Editor">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/ScriptAssemblies/Unity.VSCode.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro.Editor">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.UI">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/ScriptAssemblies/UnityEngine.UI.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Timeline">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/ScriptAssemblies/Unity.Timeline.dll</HintPath>
  </Reference>
  <Reference Include="Unity.CollabProxy.Editor">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/ScriptAssemblies/Unity.CollabProxy.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.Rider.Editor">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/ScriptAssemblies/Unity.Rider.Editor.dll</HintPath>
  </Reference>
  <Reference Include="Unity.TextMeshPro">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
  </Reference>
  <Reference Include="UnityEditor.UI">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/ScriptAssemblies/UnityEditor.UI.dll</HintPath>
  </Reference>
  <Reference Include="UnityEngine.AIModule">
  <HintPath>D:/xiazai/Unityfolder/2019.4.16f1c1/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>
@@ -282,7 +282,7 @@
  <HintPath>D:/xiazai/Unityfolder/2019.4.16f1c1/Editor/Data/PlaybackEngines/WebGLSupport/UnityEditor.WebGL.Extensions.dll</HintPath>
  </Reference>
  <Reference Include="nunit.framework">
- <HintPath>D:/0std/4forth/work-game/Final/Subway Surf/Library/PackageCache/com.unity.ext.nunit@1.0.5/net35/unity-custom/nunit.framework.dll</HintPath>
+ <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/PackageCache/com.unity.ext.nunit@1.0.5/net35/unity-custom/nunit.framework.dll</HintPath>
  </Reference>
  <Reference Include="mscorlib">
  <HintPath>D:/xiazai/Unityfolder/2019.4.16f1c1/Editor/Data/MonoBleedingEdge/lib/mono/4.7.1-api/mscorlib.dll</HintPath>
@@ -641,7 +641,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="Assembly-CSharp.csproj">
-      <Project>{609C74D2-D166-697B-43D2-FD590704895B}</Project>
+      <Project>{D449656A-FFE6-48D1-0CA0-DB4D45423B17}</Project>
       <Name>Assembly-CSharp</Name>
     </ProjectReference>
   </ItemGroup>
