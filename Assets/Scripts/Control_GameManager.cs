@@ -141,11 +141,11 @@ public class Control_GameManager : MonoBehaviour
         {
             GameObject obj = Instantiate(prefabList[i], posList[i], Quaternion.identity);
             obj.tag = "Obstacle";
-            if (obj.transform.position.x == -2.4f)
+            if (System.Math.Abs(obj.transform.position.x + 2.4f) < 0.001)
             {
                 newObjList1.Add(obj);
             }
-            else if (obj.transform.position.x == 0)
+            else if (obj.transform.position.x < 0.001)
             {
                 newObjList2.Add(obj);
             }
@@ -177,6 +177,7 @@ public class Control_GameManager : MonoBehaviour
                     {
                         obj = Instantiate(coin, new Vector3(objDict[roadName][i].transform.position.x, 0,
                             objDict[roadName][i - 1].transform.position.z + 3.0f * n), Quaternion.identity);
+                        obj.tag = "Coin";
                         coinList.Add(obj);
                         n++;
                     } while (objDict[roadName][i].transform.position.z - obj.transform.position.z > 10.0f && n < 5);
@@ -189,19 +190,16 @@ public class Control_GameManager : MonoBehaviour
                     GameObject obj = Instantiate(coin,
                         new Vector3(objDict[roadName][i - 1].transform.position.x, 0,
                             objDict[roadName][i - 1].transform.position.z + 3.0f * (j + 1)), Quaternion.identity);
+                    obj.tag = "Coin";
                     coinList.Add(obj); 
                 }
             }
         }
-
         List<int> nList = new List<int>();
         nList.Clear();
-        nList.Add(Random.Range(0, objDict[roadName].Count));
-        for (int i = 1; i < 3; i++)
+        for (int i = 0; i < 5; i++)
         {
             int n = Random.Range(0, objDict[roadName].Count);
-            Debug.Log(i);
-            Debug.Log(n);
             if (nList.Contains(n))
             {
                 i--;
@@ -211,19 +209,31 @@ public class Control_GameManager : MonoBehaviour
                 nList.Add(n);
             }
         }
+        for (int j = 0; j < nList.Count; j++)
+        {
+            int len = 0;
+            Vector3 coinPos = new Vector3();
+            if (objDict[roadName][j].name.Length == 13) len = 3;
+            if (objDict[roadName][j].name.Length == 14) len = 5;
+              for (int p = 0; p < len; p++)
+              {
+                  if (len == 5)
+                  {
+                      coinPos = new Vector3(objDict[roadName][j].transform.position.x, 3,
+                          objDict[roadName][j].transform.position.z + 2.0f * (p - len / 2 + 1));
+                  }
+                  else
+                  {
+                      coinPos = new Vector3(objDict[roadName][j].transform.position.x, 3,
+                          objDict[roadName][j].transform.position.z + 2.0f * (p - len / 2));
+                  }
+                  GameObject obj = Instantiate(coin, coinPos, Quaternion.identity);
+                  obj.tag = "Coin";
+                  coinList.Add(obj);
+              }
+        }
 
-        // if (objDict[roadName][i].name.StartsWith("Train"))
-        // {
-            // for (int j = 0; j < 3; j++)
-            // {
-                // GameObject obj = Instantiate(coin,
-                // new Vector3(objDict[roadName][n].transform.position.x, 3,
-                // objDict[roadName][n].transform.position.z + 3.0f), Quaternion.identity);
-                // coinList.Add(obj);
-            // }
-        // }
-
-            foreach (GameObject coinItem in coinList)
+        foreach (GameObject coinItem in coinList)
         {
             coinDict[roadName].Add(coinItem);
         }

@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class Control_Player : MonoBehaviour
@@ -46,11 +47,11 @@ public class Control_Player : MonoBehaviour
     {
         if (IsAD)
         {
-            if (transform.position.x == -2.5f)
+            if (System.Math.Abs(transform.position.x + 2.4f) < 0.001)
                 return;
-            else if (transform.position.x == 0f)
+            else if (transform.position.x < 0.001)
             {
-                transform.position = new Vector3(-2.5f, transform.position.y, transform.position.z);
+                transform.position = new Vector3(-2.4f, transform.position.y, transform.position.z);
             }
             else
             {
@@ -59,11 +60,11 @@ public class Control_Player : MonoBehaviour
         }
         else
         {
-            if (transform.position.x == 2.5f)
+            if (System.Math.Abs(transform.position.x - 2.4f) < 0.001)
                 return;
-            else if (transform.position.x == 0f)
+            else if (transform.position.x < 0.001)
             {
-                transform.position = new Vector3(2.5f, transform.position.y, transform.position.z);
+                transform.position = new Vector3(2.4f, transform.position.y, transform.position.z);
             }
             else
             {
@@ -84,8 +85,18 @@ public class Control_Player : MonoBehaviour
         // 如果是障碍物
         else if (other.tag.Equals("Obstacle"))
         {
-            m_IsEnd = true;
-            m_ForwardSpeeed = 0;
+            if (!(System.Math.Abs(transform.position.y - 3.1f) < 0.001))
+            {
+                m_IsEnd = true;
+                m_ForwardSpeeed = 0;
+            }
+        }
+        // 如果是斜坡
+        else if (other.tag.Equals("Steep"))
+        {
+            Debug.Log("111111");
+            transform.position = Vector3.MoveTowards(transform.position,
+                new Vector3(transform.position.x, 3.1f, transform.position.z), m_ForwardSpeeed * Time.deltaTime);
         }
     }
 }
