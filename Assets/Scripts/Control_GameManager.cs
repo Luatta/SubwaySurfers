@@ -180,7 +180,7 @@ public class Control_GameManager : MonoBehaviour
                         obj.tag = "Coin";
                         coinList.Add(obj);
                         n++;
-                    } while (objDict[roadName][i].transform.position.z - obj.transform.position.z > 10.0f && n < 5);
+                    } while (objDict[roadName][i].transform.position.z - obj.transform.position.z > 10.0f && n < 3);
                 }
             }
             else
@@ -240,7 +240,7 @@ public class Control_GameManager : MonoBehaviour
     }
     
     //障碍物随机位置
-    public Vector3 RandomBarrierPosition(int index)
+    private Vector3 RandomBarrierPosition(int index)
     {
         float[] xChoice = {-2.4f, 0, 2.4f};
         int i = Random.Range(0,3);
@@ -251,7 +251,7 @@ public class Control_GameManager : MonoBehaviour
     }
 
     // 障碍物排序
-    public void SortDict(List<GameObject> newObjList)
+    private void SortDict(List<GameObject> newObjList)
     {
         for (int i = 0; i < newObjList.Count; i++)
         {
@@ -264,6 +264,5 @@ public class Control_GameManager : MonoBehaviour
                 }
             }  
         }
-        
     }
 }
