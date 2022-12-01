@@ -47,9 +47,9 @@ public class Control_Player : MonoBehaviour
     {
         if (IsAD)
         {
-            if (System.Math.Abs(transform.position.x + 2.4f) < 0.001)
+            if (System.Math.Abs(transform.position.x + 2.4f) < 0.001f)
                 return;
-            else if (transform.position.x < 0.001)
+            else if (transform.position.x < 0.001f)
             {
                 transform.position = new Vector3(-2.4f, transform.position.y, transform.position.z);
             }
@@ -60,9 +60,9 @@ public class Control_Player : MonoBehaviour
         }
         else
         {
-            if (System.Math.Abs(transform.position.x - 2.4f) < 0.001)
+            if (System.Math.Abs(transform.position.x - 2.4f) < 0.001f)
                 return;
-            else if (transform.position.x < 0.001)
+            else if (transform.position.x < 0.001f)
             {
                 transform.position = new Vector3(2.4f, transform.position.y, transform.position.z);
             }
@@ -96,7 +96,7 @@ public class Control_Player : MonoBehaviour
         {
             Debug.Log("111111");
             transform.position = Vector3.MoveTowards(transform.position,
-                new Vector3(transform.position.x, 3.1f, transform.position.z), m_ForwardSpeeed * Time.deltaTime);
+                new Vector3(transform.position.x, 3.5f, transform.position.z), m_ForwardSpeeed * Time.deltaTime);
         }
     }
 }

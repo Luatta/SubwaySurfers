@@ -141,11 +141,11 @@ public class Control_GameManager : MonoBehaviour
         {
             GameObject obj = Instantiate(prefabList[i], posList[i], Quaternion.identity);
             obj.tag = "Obstacle";
-            if (System.Math.Abs(obj.transform.position.x + 2.4f) < 0.001)
+            if (System.Math.Abs(obj.transform.position.x + 2.4f) < 0.001f)
             {
                 newObjList1.Add(obj);
             }
-            else if (obj.transform.position.x < 0.001)
+            else if (obj.transform.position.x < 0.001f)
             {
                 newObjList2.Add(obj);
             }
