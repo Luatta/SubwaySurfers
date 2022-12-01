@@ -197,38 +197,33 @@ public class Control_GameManager : MonoBehaviour
         List<int> nList = new List<int>();
         nList.Clear();
         nList.Add(Random.Range(0, objDict[roadName].Count));
-        Debug.Log("1111");
-        for (int i = 1; i < 4; i++)
+        for (int i = 1; i < 3; i++)
         {
             int n = Random.Range(0, objDict[roadName].Count);
-            for (int j = 0; j < nList.Count; j++)
+            Debug.Log(i);
+            Debug.Log(n);
+            if (nList.Contains(n))
             {
-                if (n == nList[j])
-                {
-                    i--;
-                }
-                else
-                {
-                    nList.Add(n);
-                }
+                i--;
+            }
+            else
+            {
+                nList.Add(n);
             }
         }
 
-        // for (int i = 0; i < nList.Length; i++)
-        {
-            // if (objDict[roadName][i].name.StartsWith("Train"))
-            {
-                for (int j = 0; j < 3; j++)
-                {
-                    // GameObject obj = Instantiate(coin,
-                    // new Vector3(objDict[roadName][n].transform.position.x, 3,
-                    // objDict[roadName][n].transform.position.z + 3.0f), Quaternion.identity);
-                    // coinList.Add(obj);
-                }
-            }
-        }
-        
-        foreach (GameObject coinItem in coinList)
+        // if (objDict[roadName][i].name.StartsWith("Train"))
+        // {
+            // for (int j = 0; j < 3; j++)
+            // {
+                // GameObject obj = Instantiate(coin,
+                // new Vector3(objDict[roadName][n].transform.position.x, 3,
+                // objDict[roadName][n].transform.position.z + 3.0f), Quaternion.identity);
+                // coinList.Add(obj);
+            // }
+        // }
+
+            foreach (GameObject coinItem in coinList)
         {
             coinDict[roadName].Add(coinItem);
         }
