@@ -28184,9 +28184,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 721251886}
+  - component: {fileID: 721251887}
   m_Layer: 0
   m_Name: Road2
-  m_TagString: Untagged
+  m_TagString: Road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -28208,6 +28209,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &721251887
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 721251885}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 0.3, z: 100}
+  m_Center: {x: 0, y: -0.09, z: 45}
 --- !u!1 &724376452
 GameObject:
   m_ObjectHideFlags: 0
@@ -68253,9 +68267,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1837169138}
+  - component: {fileID: 1837169139}
   m_Layer: 0
   m_Name: Road3
-  m_TagString: Untagged
+  m_TagString: Road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68277,6 +68292,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &1837169139
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1837169137}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 0.3, z: 100}
+  m_Center: {x: 0, y: -0.09, z: 45}
 --- !u!1 &1837844665
 GameObject:
   m_ObjectHideFlags: 0
@@ -76251,9 +76279,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2061303025}
+  - component: {fileID: 2061303026}
   m_Layer: 0
   m_Name: Road1
-  m_TagString: Untagged
+  m_TagString: Road
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -76275,6 +76304,19 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!65 &2061303026
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2061303024}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 10, y: 0.3, z: 100}
+  m_Center: {x: 0, y: -0.09, z: 45}
 --- !u!1 &2061328866
 GameObject:
   m_ObjectHideFlags: 0

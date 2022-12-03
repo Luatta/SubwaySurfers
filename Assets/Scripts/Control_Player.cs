@@ -15,6 +15,7 @@ public class Control_Player : MonoBehaviour
     private bool m_IsEnd = false;
 
     private Rigidbody rig;
+    private bool m_isJump = false;
     
     // Use this for initialization
     void Start()
@@ -28,10 +29,11 @@ public class Control_Player : MonoBehaviour
     {
         // transform.position += Vector3.forward * m_ForwardSpeeed * Time.deltaTime;
         transform.Translate(Vector3.forward * m_ForwardSpeeed * Time.deltaTime);
-        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) && m_isJump)
         {
             m_Anim.SetTrigger("jump");
             rig.velocity = new Vector3(0, 5.5f, 0);
+            m_isJump = false; 
         }
         else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
@@ -92,6 +94,10 @@ public class Control_Player : MonoBehaviour
             m_IsEnd = true;
             m_ForwardSpeeed = 0;
         }
-        
+        // 如果是地面
+        else if (other.tag.Equals("Road"))
+        {
+            m_isJump = true; 
+        }
     }
 }
