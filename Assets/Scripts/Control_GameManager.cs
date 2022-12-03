@@ -110,20 +110,31 @@ public class Control_GameManager : MonoBehaviour
                     System.Math.Abs(pos.z - posList[j].z) < 10.0f) break;
                 if (prefab.name.Length == 6)
                 {
-                    if (prefabList[j].name.Length == 6 && System.Math.Abs(pos.z - posList[j].z) < 7.0f) break;
-                    if (prefabList[j].name.Length == 7 && System.Math.Abs(pos.z - posList[j].z) < 12.0f) break;
+                    if (prefabList[j].name.Length == 6 && System.Math.Abs(pos.z - posList[j].z) < 8.0f) break;
+                    if (prefabList[j].name.Length == 7 && System.Math.Abs(pos.z - posList[j].z) < 13.0f) break;
+                    if (prefabList[j].name.Length == 8 && System.Math.Abs(pos.z - posList[j].z ) < 9.0f) break;
                     if (prefabList[j].name.Length == 10 && System.Math.Abs(pos.z - posList[j].z) < 3.0f) break;
                 }
                 if (prefab.name.Length == 7)
                 {
-                    if (prefabList[j].name.Length == 6 && System.Math.Abs(pos.z - posList[j].z) < 12.0f) break;
+                    if (prefabList[j].name.Length == 6 && System.Math.Abs(pos.z - posList[j].z) < 13.0f) break;
                     if (prefabList[j].name.Length == 7 && System.Math.Abs(pos.z - posList[j].z) < 15.0f) break;
+                    if (prefabList[j].name.Length == 8 && System.Math.Abs(pos.z - posList[j].z) < 14.0f) break;
                     if (prefabList[j].name.Length == 10 && System.Math.Abs(pos.z - posList[j].z) < 9.0f) break;
+                }
+
+                if (prefab.name.Length == 8)
+                {
+                    if (prefabList[j].name.Length == 6 && System.Math.Abs(pos.z - posList[j].z) < 9.0f) break;
+                    if (prefabList[j].name.Length == 7 && System.Math.Abs(pos.z - posList[j].z) < 14.0f) break;
+                    if (prefabList[j].name.Length == 8 && System.Math.Abs(pos.z - posList[j].z) < 10.0f) break;
+                    if (prefabList[j].name.Length == 10 && System.Math.Abs(pos.z - posList[j].z) < 8.0f) break;
                 }
                 if (prefab.name.StartsWith("Roadblock") && prefabList[j].name.StartsWith("Train"))
                 {
                     if (prefabList[j].name.Length == 6 && System.Math.Abs(pos.z - posList[j].z) < 3.0f) break;
                     if (prefabList[j].name.Length == 7 && System.Math.Abs(pos.z - posList[j].z) < 9.0f) break;
+                    if (prefabList[j].name.Length == 8 && System.Math.Abs(pos.z - posList[j].z) < 8.0f) break;
                 }
             }
 
@@ -171,11 +182,17 @@ public class Control_GameManager : MonoBehaviour
                 if (objDict[roadName][i].transform.position.z - objDict[roadName][i - 1].transform.position.z > 15.0f)
                 {
                     GameObject obj;
+                    Vector3 pos;
                     int n = 1;
                     do
                     {
-                        obj = Instantiate(coin, new Vector3(objDict[roadName][i].transform.position.x, 0,
-                            objDict[roadName][i - 1].transform.position.z + 3.0f * n), Quaternion.identity);
+                        if (n == 1)
+                            pos = new Vector3(objDict[roadName][i].transform.position.x, 0,
+                                objDict[roadName][i - 1].transform.position.z + 3.0f * n + 3.0f);
+                        else
+                            pos = new Vector3(objDict[roadName][i].transform.position.x, 0,
+                                objDict[roadName][i - 1].transform.position.z + 3.0f * n);
+                        obj = Instantiate(coin, pos, Quaternion.identity);
                         coinList.Add(obj);
                         n++;
                     } while (objDict[roadName][i].transform.position.z - obj.transform.position.z > 10.0f && n < 3);
@@ -183,11 +200,17 @@ public class Control_GameManager : MonoBehaviour
             }
             else
             {
+                GameObject obj;
+                Vector3 pos;
                 for (int j = 0; j < 4; j++)
                 {
-                    GameObject obj = Instantiate(coin,
-                        new Vector3(objDict[roadName][i - 1].transform.position.x, 0,
-                            objDict[roadName][i - 1].transform.position.z + 3.0f * (j + 1)), Quaternion.identity);
+                    if (j == 0)
+                        pos = new Vector3(objDict[roadName][i - 1].transform.position.x, 0,
+                            objDict[roadName][i - 1].transform.position.z + 3.0f * (j + 1) + 3.0f);
+                    else
+                        pos = new Vector3(objDict[roadName][i - 1].transform.position.x, 0,
+                            objDict[roadName][i - 1].transform.position.z + 3.0f * (j + 1));
+                    obj = Instantiate(coin, pos, Quaternion.identity);
                     coinList.Add(obj); 
                 }
             }
