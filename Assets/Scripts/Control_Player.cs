@@ -84,12 +84,11 @@ public class Control_Player : MonoBehaviour
         // 如果是抵达点
         if (other.name.Equals("ArrivePos"))
         {
-            gameManager.changeRoad(other.transform);
+            gameManager.ChangeRoad(other.transform);
         }
         // 如果是障碍物
         else if (other.tag.Equals("Obstacle"))
         {
-            Debug.Log("22222");
             m_IsEnd = true;
             m_ForwardSpeeed = 0;
         }
