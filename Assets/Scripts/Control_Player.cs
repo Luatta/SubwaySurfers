@@ -13,11 +13,14 @@ public class Control_Player : MonoBehaviour
     private Animator m_Anim;
     //游戏结束
     private bool m_IsEnd = false;
+
+    private Rigidbody rig;
     
     // Use this for initialization
     void Start()
     {
         m_Anim = GetComponent<Animator>();
+        rig = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -28,6 +31,7 @@ public class Control_Player : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
         {
             m_Anim.SetTrigger("jump");
+            rig.velocity = new Vector3(0, 5.5f, 0);
         }
         else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
@@ -85,18 +89,10 @@ public class Control_Player : MonoBehaviour
         // 如果是障碍物
         else if (other.tag.Equals("Obstacle"))
         {
-            // if (!(System.Math.Abs(transform.position.y - 3.1f) < 0.001))
-            {
-                m_IsEnd = true;
-                m_ForwardSpeeed = 0;
-            }
+            Debug.Log("22222");
+            m_IsEnd = true;
+            m_ForwardSpeeed = 0;
         }
-        // 如果是斜坡
-        else if (other.tag.Equals("Steep"))
-        {
-            Debug.Log("111111");
-            // transform.position = Vector3.MoveTowards(transform.position,
-                // new Vector3(transform.position.x, 3.5f, transform.position.z), m_ForwardSpeeed * Time.deltaTime);
-        }
+        
     }
 }

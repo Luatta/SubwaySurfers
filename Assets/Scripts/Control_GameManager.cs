@@ -140,7 +140,6 @@ public class Control_GameManager : MonoBehaviour
         for (int i = 0; i < posList.Count; i++)
         {
             GameObject obj = Instantiate(prefabList[i], posList[i], Quaternion.identity);
-            obj.tag = "Obstacle";
             if (System.Math.Abs(obj.transform.position.x + 2.4f) < 0.001f)
             {
                 newObjList1.Add(obj);
@@ -177,7 +176,6 @@ public class Control_GameManager : MonoBehaviour
                     {
                         obj = Instantiate(coin, new Vector3(objDict[roadName][i].transform.position.x, 0,
                             objDict[roadName][i - 1].transform.position.z + 3.0f * n), Quaternion.identity);
-                        obj.tag = "Coin";
                         coinList.Add(obj);
                         n++;
                     } while (objDict[roadName][i].transform.position.z - obj.transform.position.z > 10.0f && n < 3);
@@ -190,7 +188,6 @@ public class Control_GameManager : MonoBehaviour
                     GameObject obj = Instantiate(coin,
                         new Vector3(objDict[roadName][i - 1].transform.position.x, 0,
                             objDict[roadName][i - 1].transform.position.z + 3.0f * (j + 1)), Quaternion.identity);
-                    obj.tag = "Coin";
                     coinList.Add(obj); 
                 }
             }
@@ -217,18 +214,9 @@ public class Control_GameManager : MonoBehaviour
             if (objDict[roadName][j].name.Length == 14) len = 5;
               for (int p = 0; p < len; p++)
               {
-                  if (len == 5)
-                  {
-                      coinPos = new Vector3(objDict[roadName][j].transform.position.x, 3,
-                          objDict[roadName][j].transform.position.z + 2.0f * (p - len / 2 + 1));
-                  }
-                  else
-                  {
-                      coinPos = new Vector3(objDict[roadName][j].transform.position.x, 3,
+                  coinPos = new Vector3(objDict[roadName][j].transform.position.x, 3,
                           objDict[roadName][j].transform.position.z + 2.0f * (p - len / 2));
-                  }
                   GameObject obj = Instantiate(coin, coinPos, Quaternion.identity);
-                  obj.tag = "Coin";
                   coinList.Add(obj);
               }
         }
