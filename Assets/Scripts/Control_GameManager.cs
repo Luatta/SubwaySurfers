@@ -211,7 +211,7 @@ public class Control_GameManager : MonoBehaviour
     {
         GameObject obj;
         Vector3 pos;
-        int n = 2;
+        int n = 3;
         List<int> nList = new List<int>();
         nList.Clear();
         Vector3 coinPos;
@@ -221,7 +221,7 @@ public class Control_GameManager : MonoBehaviour
         {
             if (System.Math.Abs(objDict[roadName][i - 1].transform.position.x - objDict[roadName][i].transform.position.x) < 0.001)
             {
-                if (objDict[roadName][i].transform.position.z - objDict[roadName][i - 1].transform.position.z > 15.0f)
+                if (objDict[roadName][i].transform.position.z - objDict[roadName][i - 1].transform.position.z > 10.0f)
                 {
                     do
                     {
@@ -239,7 +239,7 @@ public class Control_GameManager : MonoBehaviour
                 for (int j = 0; j < 3; j++)
                 {
                     pos = new Vector3(objDict[roadName][i - 1].transform.position.x, 0,
-                            objDict[roadName][i - 1].transform.position.z + 3.0f * (j + 2));
+                            objDict[roadName][i - 1].transform.position.z + 3.0f * (j + 3));
                     obj = Instantiate(coin, pos, Quaternion.identity);
                     coinList.Add(obj); 
                 }

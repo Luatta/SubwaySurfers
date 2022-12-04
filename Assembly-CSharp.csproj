@@ -59,6 +59,7 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\Control_Camera.cs" />
+     <Compile Include="Assets\Scripts\Control_Coin.cs" />
      <Compile Include="Assets\Scripts\Control_GameManager.cs" />
      <Compile Include="Assets\Scripts\Control_Player.cs" />
      <None Include="Assets\POLYGON city pack\Read_me.txt" />

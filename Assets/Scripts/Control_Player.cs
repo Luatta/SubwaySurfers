@@ -38,6 +38,7 @@ public class Control_Player : MonoBehaviour
         else if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             m_Anim.SetTrigger("slide");
+            m_isJump = false;
         }
         else if (Input.GetKeyDown(KeyCode.A) || Input.GetKeyDown(KeyCode.LeftArrow))
         {
@@ -53,9 +54,9 @@ public class Control_Player : MonoBehaviour
     {
         if (IsAD)
         {
-            if (System.Math.Abs(transform.position.x + 2.4f) < 0.001f)
+            if (System.Math.Abs(transform.position.x + 2.4f) < 0.1f)
                 return;
-            else if (System.Math.Abs(transform.position.x - 0) < 0.001f)
+            else if (System.Math.Abs(transform.position.x - 0) < 0.1f)
             {
                 transform.position = new Vector3(-2.4f, transform.position.y, transform.position.z);
             }
@@ -66,9 +67,9 @@ public class Control_Player : MonoBehaviour
         }
         else
         {
-            if (System.Math.Abs(transform.position.x - 2.4f) < 0.001f)
+            if (System.Math.Abs(transform.position.x - 2.4f) < 0.1f)
                 return;
-            else if (System.Math.Abs(transform.position.x - 0) < 0.001f)
+            else if (System.Math.Abs(transform.position.x - 0) < 0.1f)
             {
                 transform.position = new Vector3(2.4f, transform.position.y, transform.position.z);
             }
@@ -86,6 +87,7 @@ public class Control_Player : MonoBehaviour
         // 如果是抵达点
         if (other.name.Equals("ArrivePos"))
         {
+            Debug.Log("换地");
             gameManager.ChangeRoad(other.transform);
         }
         // 如果是障碍物

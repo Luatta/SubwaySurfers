@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3160228510179299230}
   - component: {fileID: 8201873401956472185}
   - component: {fileID: 2910467437561271387}
+  - component: {fileID: 8954606171021141854}
   m_Layer: 0
   m_Name: GoldCoin
   m_TagString: Coin
@@ -65,6 +66,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0097065605, y: 0.0018293965, z: 0.009737533}
   m_Center: {x: -0.000038837534, y: 0.0009820474, z: -0.008774472}
+--- !u!114 &8954606171021141854
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3357500752226654187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b554d86964777d3408ef2a792ec62f84, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &3808092179864565910
 GameObject:
   m_ObjectHideFlags: 0
