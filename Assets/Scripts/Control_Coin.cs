@@ -30,6 +30,7 @@ public class Control_Coin : MonoBehaviour
         if (other.tag.Equals("Player"))
         {
             // Debug.Log("吃金币");
+            Control_Score._instance.Addgold();
             Destroy(this.gameObject);
         }
     }

@@ -120,12 +120,12 @@ public class Control_GameManager : MonoBehaviour
             for (j = 0; j < posList.Count; j++)
             {
                 if (prefab.name.StartsWith("Roadblock") && prefabList[j].name.StartsWith("Roadblock") &&
-                    System.Math.Abs(pos.z - posList[j].z) < 10.0f) break;
+                    System.Math.Abs(pos.z - posList[j].z) < 12.0f) break;
                 if (prefab.name.Length == 6)
                 {
                     if (prefabList[j].name.Length == 6 && System.Math.Abs(pos.z - posList[j].z) < 8.0f) break;
                     if (prefabList[j].name.Length == 7 && System.Math.Abs(pos.z - posList[j].z) < 13.0f) break;
-                    if (prefabList[j].name.Length == 8 && System.Math.Abs(pos.z - posList[j].z ) < 9.0f) break;
+                    if (prefabList[j].name.Length == 8 && System.Math.Abs(pos.z - posList[j].z ) < 8.5f) break;
                     if (prefabList[j].name.Length == 10 && System.Math.Abs(pos.z - posList[j].z) < 3.0f) break;
                 }
                 if (prefab.name.Length == 7)

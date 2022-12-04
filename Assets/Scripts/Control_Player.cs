@@ -87,7 +87,6 @@ public class Control_Player : MonoBehaviour
         // 如果是抵达点
         if (other.name.Equals("ArrivePos"))
         {
-            Debug.Log("换地");
             gameManager.ChangeRoad(other.transform);
         }
         // 如果是障碍物

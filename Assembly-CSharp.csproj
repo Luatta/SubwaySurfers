@@ -62,6 +62,7 @@
      <Compile Include="Assets\Scripts\Control_Coin.cs" />
      <Compile Include="Assets\Scripts\Control_GameManager.cs" />
      <Compile Include="Assets\Scripts\Control_Player.cs" />
+     <Compile Include="Assets\Scripts\Control_Score.cs" />
      <None Include="Assets\POLYGON city pack\Read_me.txt" />
  <Reference Include="Unity.Timeline.Editor">
  <HintPath>D:/0std/4forth/work-game/Final/SubwaySurf/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>

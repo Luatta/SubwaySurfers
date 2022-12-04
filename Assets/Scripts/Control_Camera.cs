@@ -23,7 +23,7 @@ public class Control_Camera : MonoBehaviour
     void LateUpdate()
     {
         m_TargetPosition = m_Follow.position + Vector3.up * m_DistanceHeight - m_Follow.forward * m_DistanceAway;
-        m_TargetPosition = new Vector3(m_TargetPosition.x, 4, m_TargetPosition.z);
+        // m_TargetPosition = new Vector3(m_TargetPosition.x, 4, m_TargetPosition.z);
         transform.position = Vector3.Lerp(transform.position, m_TargetPosition, Time.deltaTime * smooth);
     }
 }
