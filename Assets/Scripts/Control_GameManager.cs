@@ -230,7 +230,7 @@ public class Control_GameManager : MonoBehaviour
                         obj = Instantiate(coin, pos, Quaternion.identity);
                         coinList.Add(obj);
                         n++;
-                    } while (objDict[roadName][i].transform.position.z - obj.transform.position.z > 3.0f && n < 3);
+                    } while (objDict[roadName][i].transform.position.z - obj.transform.position.z > 3.0f && n < 4);
                     n = 1;
                 }
             }

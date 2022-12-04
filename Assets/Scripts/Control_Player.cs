@@ -6,7 +6,7 @@ using UnityEngine;
 public class Control_Player : MonoBehaviour
 {
     //前进速度
-    public float m_ForwardSpeeed;
+    public float m_ForwardSpeeed = 10.0f;
     // 游戏管理器
     public Control_GameManager gameManager;
     //动画组件

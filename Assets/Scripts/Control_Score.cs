@@ -9,7 +9,7 @@ public class Control_Score : MonoBehaviour
     private Text coins;
     private float nowScores = 0;
     private int nowCoins = 0;
-    Transform m_Follow;     
+    Transform m_Follow;
 
     public static Control_Score _instance;
     void Awake()
