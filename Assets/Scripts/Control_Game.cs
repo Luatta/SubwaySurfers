@@ -7,10 +7,13 @@ public class Control_Game : MonoBehaviour
 {
     //玩家
     private GameObject m_Target;
+    public Control_Player m_Player;
     //路线
     private GameObject m_RoadTarget;
     //相机
     private GameObject m_CameraTarget;
+    //分数
+    public Control_Score GameScore;
 
     private bool isStart = false;
     
@@ -39,13 +42,18 @@ public class Control_Game : MonoBehaviour
         {
             isStart = true;
             Debug.Log("Start");
+            // UnityEngine.SceneManagement.SceneManager.LoadScene(0);
             startgameMenu.SetActive(false);
             ingameMenu.SetActive(true);
             pausegameMenu.SetActive(false);
             overgameMenu.SetActive(false);
+            Time.timeScale = 1.0f;
+            m_Player.m_ForwardSpeeed = 10.0f;
+            m_Player.m_IsEnd = false;
+            GameScore.coins.text = "0";
+            GameScore.scores.text = "000000";
             m_Target.GetComponent<Control_Player>().enabled = true;
             m_RoadTarget.GetComponent<Control_GameManager>().enabled = true;
-            Time.timeScale = 1.0f;
             m_Target.transform.position = new Vector3(0, 0.063f, -3);
             m_CameraTarget.transform.position = new Vector3(0, 4f, -8.5f);
         }
@@ -83,15 +91,21 @@ public class Control_Game : MonoBehaviour
         overgameMenu.SetActive(false);
     }
     
+    // 游戏结束
+    public void OnGameOver()
+    {
+        Debug.Log("GameOver");
+        Time.timeScale = 0;
+        m_Target.GetComponent<Control_Player>().enabled = false;
+        m_RoadTarget.GetComponent<Control_GameManager>().enabled = false;
+        overgameMenu.SetActive(true);
+    }
+
     //点击"Play"时执行此方法
     public void OnPlay()
     {
         Debug.Log("Play");
         isStart = false;
-        UnityEngine.SceneManagement.SceneManager.LoadScene(0);
-        startgameMenu.SetActive(false);
-        ingameMenu.SetActive(false);
-        pausegameMenu.SetActive(false);
-        overgameMenu.SetActive(false);
+        OnStart();
     }
 }

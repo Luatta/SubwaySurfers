@@ -5,8 +5,8 @@ using UnityEngine.UI;
 
 public class Control_Score : MonoBehaviour
 {
-    private Text scores;
-    private Text coins;
+    public Text scores;
+    public Text coins;
     private float nowScores = 0;
     private int nowCoins = 0;
     Transform m_Follow;
@@ -27,7 +27,6 @@ public class Control_Score : MonoBehaviour
     void Start()
     {
         m_Follow = GameObject.Find("Player").transform;
-        
         scores = GameObject.Find("scores").GetComponent<Text>();
         coins = GameObject.Find("coins").GetComponent<Text>();
 

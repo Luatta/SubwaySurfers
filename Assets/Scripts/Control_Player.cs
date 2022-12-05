@@ -9,10 +9,12 @@ public class Control_Player : MonoBehaviour
     public float m_ForwardSpeeed = 10.0f;
     // 游戏管理器
     public Control_GameManager gameManager;
+    // 游戏控制
+    public Control_Game gameController;
     //动画组件
     private Animator m_Anim;
     //游戏结束
-    private bool m_IsEnd = false;
+    public bool m_IsEnd = false;
 
     private Rigidbody rig;
     private bool m_isJump = false;
@@ -90,10 +92,11 @@ public class Control_Player : MonoBehaviour
             gameManager.ChangeRoad(other.transform);
         }
         // 如果是障碍物
-        else if (other.tag.Equals("Obstacle"))
+        else if (other.tag.Equals("Obstacle") && !m_IsEnd)
         {
             m_IsEnd = true;
             m_ForwardSpeeed = 0;
+            gameController.OnGameOver();
         }
         // 如果是地面
         else if (other.tag.Equals("Road"))
