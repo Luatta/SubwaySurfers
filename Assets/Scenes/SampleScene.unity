@@ -9787,7 +9787,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &227254732
 RectTransform:
   m_ObjectHideFlags: 0
@@ -57986,6 +57986,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Player: {fileID: 1828819740}
+  gameManager: {fileID: 1947471760}
+  roadList:
+  - {fileID: 2061303025}
+  - {fileID: 721251886}
+  - {fileID: 1837169138}
   GameScore: {fileID: 1926691060}
   startgameMenu: {fileID: 227254731}
   ingameMenu: {fileID: 1926691058}
@@ -61405,7 +61410,9 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 0
+  m_Text: '0
+
+'
 --- !u!222 &1627879473
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -74415,7 +74422,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1926691059
 RectTransform:
   m_ObjectHideFlags: 0
@@ -74452,6 +74459,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scores: {fileID: 1405928885}
   coins: {fileID: 1627879472}
+  coinsBg: {fileID: 1731298871}
+  nowScores: 0
+  nowCoins: 0
 --- !u!1001 &1927036929
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -75643,7 +75653,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1947471758}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b76e2e00146e3043ad3bacaf2975a06, type: 3}
   m_Name: 

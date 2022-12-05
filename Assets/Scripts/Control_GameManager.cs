@@ -68,7 +68,7 @@ public class Control_GameManager : MonoBehaviour
         }
     }
  
-    void InitRoad(int index)
+    public void InitRoad(int index)
     {
         string roadName = roadList[index].name;
         // 清空已有障碍物

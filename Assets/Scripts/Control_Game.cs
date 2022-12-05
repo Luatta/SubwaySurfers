@@ -9,13 +9,16 @@ public class Control_Game : MonoBehaviour
     private GameObject m_Target;
     public Control_Player m_Player;
     //路线
-    private GameObject m_RoadTarget;
+    public Control_GameManager gameManager;
+    //道路列表
+    public List<Transform> roadList = new List<Transform>();
     //相机
     private GameObject m_CameraTarget;
     //分数
     public Control_Score GameScore;
 
     private bool isStart = false;
+    private bool isPlay = false;
     
     //the ButtonPauseMenu
     public GameObject startgameMenu;
@@ -26,36 +29,48 @@ public class Control_Game : MonoBehaviour
     void Start()
     {
         m_Target = GameObject.Find("Player");
-        m_RoadTarget = GameObject.Find("GameManager");
         m_CameraTarget = GameObject.Find("Main Camera");
+        startgameMenu.SetActive(true);
+        ingameMenu.SetActive(false);
+        pausegameMenu.SetActive(false);
+        overgameMenu.SetActive(false);
     }
 
     private void Update()
     {
-        OnStart();
+        if (!isStart)
+        {
+            OnStart();
+        }
     }
 
     //点击“开始”时执行此方法
     public void OnStart()
     {
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0) && !isStart)
+        if ((Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButton(0)) || isPlay)
         {
-            isStart = true;
             Debug.Log("Start");
-            // UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+            isStart = true;
             startgameMenu.SetActive(false);
             ingameMenu.SetActive(true);
             pausegameMenu.SetActive(false);
             overgameMenu.SetActive(false);
             Time.timeScale = 1.0f;
+            m_Target.GetComponent<Control_Player>().enabled = true;
+            m_Target.transform.position = new Vector3(0, 0.063f, -3);
+            m_CameraTarget.transform.position = new Vector3(0, 4f, -8.5f);
             m_Player.m_ForwardSpeeed = 10.0f;
             m_Player.m_IsEnd = false;
             GameScore.coins.text = "0";
             GameScore.scores.text = "000000";
-            m_Target.GetComponent<Control_Player>().enabled = true;
-            m_RoadTarget.GetComponent<Control_GameManager>().enabled = true;
-            m_Target.transform.position = new Vector3(0, 0.063f, -3);
-            m_CameraTarget.transform.position = new Vector3(0, 4f, -8.5f);
+            GameScore.nowCoins = 0;
+            GameScore.nowScores = 0;
+            for (int i = 0; i < roadList.Count; i++)
+            {
+                roadList[i].position = new Vector3(0, 0, 100 * i);
+            }
+            gameManager.InitRoad(0);
+            gameManager.InitRoad(1);
         }
     }
     
@@ -84,7 +99,6 @@ public class Control_Game : MonoBehaviour
         Debug.Log("Home");
         isStart = false;
         m_Target.GetComponent<Control_Player>().enabled = false;
-        m_RoadTarget.GetComponent<Control_GameManager>().enabled = false;
         startgameMenu.SetActive(true);
         ingameMenu.SetActive(false);
         pausegameMenu.SetActive(false);
@@ -97,7 +111,6 @@ public class Control_Game : MonoBehaviour
         Debug.Log("GameOver");
         Time.timeScale = 0;
         m_Target.GetComponent<Control_Player>().enabled = false;
-        m_RoadTarget.GetComponent<Control_GameManager>().enabled = false;
         overgameMenu.SetActive(true);
     }
 
@@ -106,6 +119,9 @@ public class Control_Game : MonoBehaviour
     {
         Debug.Log("Play");
         isStart = false;
+        // UnityEngine.SceneManagement.SceneManager.LoadScene(0);
+        isPlay = true;
         OnStart();
+        isPlay = false;
     }
 }

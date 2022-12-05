@@ -7,8 +7,9 @@ public class Control_Score : MonoBehaviour
 {
     public Text scores;
     public Text coins;
-    private float nowScores = 0;
-    private int nowCoins = 0;
+    public Image coinsBg;
+    public float nowScores = 0;
+    public int nowCoins = 0;
     Transform m_Follow;
 
     public static Control_Score _instance;
@@ -21,6 +22,8 @@ public class Control_Score : MonoBehaviour
     {
         nowCoins += 1;
         coins.text = nowCoins.ToString();
+        coinsBg.rectTransform.sizeDelta = new Vector2(110 + 40 * (nowCoins.ToString().Length - 1), 68);
+        // Debug.Log();
     }
 
     // Start is called before the first frame update
@@ -29,6 +32,7 @@ public class Control_Score : MonoBehaviour
         m_Follow = GameObject.Find("Player").transform;
         scores = GameObject.Find("scores").GetComponent<Text>();
         coins = GameObject.Find("coins").GetComponent<Text>();
+        coinsBg = GameObject.Find("CoinBack").GetComponent<Image>();
 
         scores.text = "000000";
         coins.text = "0";
