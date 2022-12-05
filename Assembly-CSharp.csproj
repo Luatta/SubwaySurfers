@@ -60,6 +60,7 @@
   <ItemGroup>
      <Compile Include="Assets\Scripts\Control_Camera.cs" />
      <Compile Include="Assets\Scripts\Control_Coin.cs" />
+     <Compile Include="Assets\Scripts\Control_DoubleCoin.cs" />
      <Compile Include="Assets\Scripts\Control_Game.cs" />
      <Compile Include="Assets\Scripts\Control_GameManager.cs" />
      <Compile Include="Assets\Scripts\Control_OverScore.cs" />

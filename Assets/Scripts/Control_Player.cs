@@ -30,7 +30,10 @@ public class Control_Player : MonoBehaviour
     void Update()
     {
         // transform.position += Vector3.forward * m_ForwardSpeeed * Time.deltaTime;
-        transform.Translate(Vector3.forward * m_ForwardSpeeed * Time.deltaTime);
+        if (gameController.isTimeout)
+        {
+            transform.Translate(Vector3.forward * m_ForwardSpeeed * Time.deltaTime);
+        }
         if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow) && m_isJump)
         {
             m_Anim.SetTrigger("jump");

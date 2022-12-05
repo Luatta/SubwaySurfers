@@ -8,6 +8,7 @@ TagManager:
   - Coin
   - Steep
   - Road
+  - DoubleCoin
   layers:
   - Default
   - TransparentFX

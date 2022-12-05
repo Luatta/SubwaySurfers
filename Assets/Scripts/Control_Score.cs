@@ -23,7 +23,6 @@ public class Control_Score : MonoBehaviour
         nowCoins += 1;
         coins.text = nowCoins.ToString();
         coinsBg.rectTransform.sizeDelta = new Vector2(110 + 40 * (nowCoins.ToString().Length - 1), 68);
-        // Debug.Log();
     }
 
     // Start is called before the first frame update

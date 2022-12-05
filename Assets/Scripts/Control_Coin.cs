@@ -22,7 +22,6 @@ public class Control_Coin : MonoBehaviour
         {
             Destroy(this.gameObject);
         }
-
     }
     
     private void OnTriggerEnter(Collider other)

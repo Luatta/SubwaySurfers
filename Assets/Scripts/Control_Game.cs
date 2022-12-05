@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Control_Game : MonoBehaviour
 {
@@ -16,6 +17,10 @@ public class Control_Game : MonoBehaviour
     private GameObject m_CameraTarget;
     //分数
     public Control_Score GameScore;
+    //倒计时
+    private int timer = 3;
+    public Text countdown;
+    public bool isTimeout = true;
 
     private bool isStart = false;
     private bool isPlay = false;
@@ -24,14 +29,17 @@ public class Control_Game : MonoBehaviour
     public GameObject startgameMenu;
     public GameObject ingameMenu;
     public GameObject pausegameMenu;
+    public GameObject timegameMenu;
     public GameObject overgameMenu;
     
     void Start()
     {
         m_Target = GameObject.Find("Player");
         m_CameraTarget = GameObject.Find("Main Camera");
+        countdown.text = "3";
         startgameMenu.SetActive(true);
         ingameMenu.SetActive(false);
+        timegameMenu.SetActive(false);
         pausegameMenu.SetActive(false);
         overgameMenu.SetActive(false);
     }
@@ -51,8 +59,10 @@ public class Control_Game : MonoBehaviour
         {
             Debug.Log("Start");
             isStart = true;
+            isTimeout = true;
             startgameMenu.SetActive(false);
             ingameMenu.SetActive(true);
+            timegameMenu.SetActive(false);
             pausegameMenu.SetActive(false);
             overgameMenu.SetActive(false);
             Time.timeScale = 1.0f;
@@ -65,6 +75,7 @@ public class Control_Game : MonoBehaviour
             GameScore.scores.text = "000000";
             GameScore.nowCoins = 0;
             GameScore.nowScores = 0;
+            countdown.text = "3";
             for (int i = 0; i < roadList.Count; i++)
             {
                 roadList[i].position = new Vector3(0, 0, 100 * i);
@@ -82,15 +93,40 @@ public class Control_Game : MonoBehaviour
         pausegameMenu.SetActive(true);
         overgameMenu.SetActive(false);
     }
+
+    // 使用IEnumerator倒计时
+    IEnumerator StartTime()
+    {
+        timegameMenu.SetActive(true);
+        pausegameMenu.SetActive(false);
+        overgameMenu.SetActive(false);
+        isTimeout = false;
+        while (timer >= 0)
+        {
+            countdown.text = timer.ToString("f0");
+            yield return new WaitForSeconds(1);   
+            timer--;
+        }
+        if (timer == -1)
+        {
+            isTimeout = true;
+            ingameMenu.SetActive(true);
+            timegameMenu.SetActive(false);
+            pausegameMenu.SetActive(false);
+            overgameMenu.SetActive(false);
+            timer = 3;
+        }
+    }
     
     //点击“Resume”时执行此方法
     public void OnResume()
-    { 
+    {
         Debug.Log("Resume");
         Time.timeScale = 1f;
-        ingameMenu.SetActive(true);
-        pausegameMenu.SetActive(false);
-        overgameMenu.SetActive(false);
+        if (isTimeout)
+        {
+            StartCoroutine(StartTime());
+        }
     }
 
     //点击"Home"时执行此方法
@@ -101,6 +137,7 @@ public class Control_Game : MonoBehaviour
         m_Target.GetComponent<Control_Player>().enabled = false;
         startgameMenu.SetActive(true);
         ingameMenu.SetActive(false);
+        timegameMenu.SetActive(false);
         pausegameMenu.SetActive(false);
         overgameMenu.SetActive(false);
     }

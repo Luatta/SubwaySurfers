@@ -17,6 +17,8 @@ public class Control_GameManager : MonoBehaviour
     Dictionary<string, List<GameObject>> coinDict = new Dictionary<string, List<GameObject>>();
     // 金币
     public GameObject coin; 
+    // 双倍金币
+    public GameObject doublecoin; 
     // 道路间隔距离
     public int roadDistance;
     
@@ -231,7 +233,7 @@ public class Control_GameManager : MonoBehaviour
                         coinList.Add(obj);
                         n++;
                     } while (objDict[roadName][i].transform.position.z - obj.transform.position.z > 3.0f && n < 4);
-                    n = 1;
+                    n = 3;
                 }
             }
             else
@@ -240,7 +242,14 @@ public class Control_GameManager : MonoBehaviour
                 {
                     pos = new Vector3(objDict[roadName][i - 1].transform.position.x, 0,
                             objDict[roadName][i - 1].transform.position.z + 3.0f * (j + 3));
-                    obj = Instantiate(coin, pos, Quaternion.identity);
+                    if (j == 2)
+                    {
+                        obj = Instantiate(doublecoin, pos, Quaternion.identity);
+                    }
+                    else
+                    {
+                        obj = Instantiate(coin, pos, Quaternion.identity);
+                    }
                     coinList.Add(obj); 
                 }
             }
