@@ -8,7 +8,7 @@ public class Control_Coin : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-
+        
     }
 
     void Awake()

@@ -15,6 +15,10 @@ public class Control_Player : MonoBehaviour
     public Control_DoubleCoinCountdown doubleCoinProp;
     // 倒计时面板
     public GameObject doubleCountdown;
+    // 金币音效
+    public AudioSource audioCoin;
+    // 撞击音效
+    public AudioSource audioObstacle;
     //动画组件
     private Animator m_Anim;
     //游戏结束
@@ -103,12 +107,18 @@ public class Control_Player : MonoBehaviour
         {
             m_IsEnd = true;
             m_ForwardSpeeed = 0;
+            audioObstacle.Play();
             gameController.OnGameOver();
         }
         // 如果是地面
         else if (other.tag.Equals("Road"))
         {
             m_isJump = true; 
+        }
+        // 如果是双倍金币道具
+        else if (other.tag.Equals("Coin"))
+        {
+            audioCoin.Play();
         }
         // 如果是双倍金币道具
         else if (other.tag.Equals("DoubleCoin"))
