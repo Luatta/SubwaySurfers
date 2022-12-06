@@ -66,6 +66,7 @@
      <Compile Include="Assets\Scripts\Control_GameManager.cs" />
      <Compile Include="Assets\Scripts\Control_OverScore.cs" />
      <Compile Include="Assets\Scripts\Control_Player.cs" />
+     <Compile Include="Assets\Scripts\Control_Police.cs" />
      <Compile Include="Assets\Scripts\Control_Score.cs" />
      <None Include="Assets\POLYGON city pack\Read_me.txt" />
  <Reference Include="Unity.Timeline.Editor">

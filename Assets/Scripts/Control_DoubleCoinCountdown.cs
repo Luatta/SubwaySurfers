@@ -50,10 +50,11 @@ public class Control_DoubleCoinCountdown : MonoBehaviour
 {
     public Slider countDownSlider; //进度条显示
     public Image sliderImg; //进度条填充图
-    private CountDown countDown = null; //声明倒计时对象
+    public CountDown countDown = null; //声明倒计时对象
     public bool isDouble = false;
     // 倒计时面板
     private GameObject doubleCountdown;
+    public Control_Game gameControler;
     
     void Start()
     {
@@ -73,7 +74,9 @@ public class Control_DoubleCoinCountdown : MonoBehaviour
         {
             isDouble = true;
             countDown.UpdateTime(); //开启倒计时
-            countDownSlider.value = countDown.CountDownTime / (countDown.TotalTime * 1.0f); //将倒计时时间映射到进度条上
+            //将倒计时时间映射到进度条上
+            if (gameControler.timer == 3)
+                countDownSlider.value = countDown.CountDownTime / (countDown.TotalTime * 1.0f);
             //控制进度条显示颜色
             if (countDownSlider.value > 0.6f)
             {

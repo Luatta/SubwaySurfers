@@ -17,8 +17,13 @@ public class Control_Game : MonoBehaviour
     private GameObject m_CameraTarget;
     //分数
     public Control_Score GameScore;
+    //道具倒计时
+    public Control_DoubleCoinCountdown GameCoinCountdown;
+    public Control_Police policeControl;
+    // 倒计时面板
+    public GameObject doubleCountdown;
     //倒计时
-    private int timer = 3;
+    public int timer = 3;
     public Text countdown;
     public bool isTimeout = true;
 
@@ -60,6 +65,7 @@ public class Control_Game : MonoBehaviour
             Debug.Log("Start");
             isStart = true;
             isTimeout = true;
+            timer = 3;
             startgameMenu.SetActive(false);
             ingameMenu.SetActive(true);
             timegameMenu.SetActive(false);
@@ -76,6 +82,14 @@ public class Control_Game : MonoBehaviour
             GameScore.nowCoins = 0;
             GameScore.nowScores = 0;
             countdown.text = "3";
+            GameCoinCountdown.isDouble = false;
+            GameCoinCountdown.countDownSlider.value = 1;
+            GameCoinCountdown.countDown = null;
+            GameCoinCountdown.sliderImg.color = Color.green;
+            GameCoinCountdown.sliderImg.color = Color.green;
+            doubleCountdown.SetActive(false);
+            policeControl.m_Anim.SetBool("punch", false);
+            policeControl.transform.position = new Vector3(0, 0, 0);
             for (int i = 0; i < roadList.Count; i++)
             {
                 roadList[i].position = new Vector3(0, 0, 100 * i);

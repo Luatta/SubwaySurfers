@@ -94,6 +94,13 @@ public class Control_Player : MonoBehaviour
         }
     }
     
+    // 使用IEnumerator倒计时
+    IEnumerator StartTime()
+    {
+        yield return new WaitForSeconds(1);
+        gameController.OnGameOver();
+    }
+    
     //游戏结束
     void OnTriggerEnter(Collider other)
     {
@@ -108,7 +115,8 @@ public class Control_Player : MonoBehaviour
             m_IsEnd = true;
             m_ForwardSpeeed = 0;
             audioObstacle.Play();
-            gameController.OnGameOver();
+            StartCoroutine(StartTime());
+            // gameController.OnGameOver();
         }
         // 如果是地面
         else if (other.tag.Equals("Road"))
