@@ -232,7 +232,7 @@ public class Control_GameManager : MonoBehaviour
                         obj = Instantiate(coin, pos, Quaternion.identity);
                         coinList.Add(obj);
                         n++;
-                    } while (objDict[roadName][i].transform.position.z - obj.transform.position.z > 3.0f && n < 4);
+                    } while (objDict[roadName][i].transform.position.z - obj.transform.position.z > 3.0f && n < 6);
                     n = 3;
                 }
             }
@@ -242,16 +242,13 @@ public class Control_GameManager : MonoBehaviour
                 {
                     pos = new Vector3(objDict[roadName][i - 1].transform.position.x, 0,
                             objDict[roadName][i - 1].transform.position.z + 3.0f * (j + 3));
-                    if (j == 2)
-                    {
-                        obj = Instantiate(doublecoin, pos, Quaternion.identity);
-                    }
-                    else
-                    {
-                        obj = Instantiate(coin, pos, Quaternion.identity);
-                    }
+                    obj = Instantiate(coin, pos, Quaternion.identity);
                     coinList.Add(obj); 
                 }
+                pos = new Vector3(objDict[roadName][i].transform.position.x, 0,
+                    objDict[roadName][i - 1].transform.position.z + 3.0f * 6.2f);
+                obj = Instantiate(doublecoin, pos, Quaternion.identity);
+                coinList.Add(obj); 
             }
         }
         

@@ -12,6 +12,9 @@ public class Control_Score : MonoBehaviour
     public int nowCoins = 0;
     Transform m_Follow;
 
+    // 倒计时模块
+    public Control_DoubleCoinCountdown doubleCoinProp;
+
     public static Control_Score _instance;
     void Awake()
     {
@@ -20,7 +23,8 @@ public class Control_Score : MonoBehaviour
     
     public void Addgold()
     {
-        nowCoins += 1;
+        // Debug.Log(doubleCoinProp.isDouble);
+        nowCoins += doubleCoinProp.isDouble? 2 : 1;
         coins.text = nowCoins.ToString();
         coinsBg.rectTransform.sizeDelta = new Vector2(110 + 40 * (nowCoins.ToString().Length - 1), 68);
     }

@@ -28,7 +28,6 @@ public class Control_DoubleCoin : MonoBehaviour
     {
         if (other.tag.Equals("Player"))
         {
-            Debug.Log("双倍金币");
             Destroy(this.gameObject);
         }
     }

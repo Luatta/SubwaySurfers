@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 3743584827194969927}
   - component: {fileID: 8425538151371034379}
   - component: {fileID: 4986425724004597136}
-  - component: {fileID: 6828683753527520446}
+  - component: {fileID: 7020556166365027432}
   m_Layer: 0
   m_Name: DoubleCoin
   m_TagString: DoubleCoin
@@ -67,7 +67,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.0097065605, y: 0.0018293965, z: 0.009737533}
   m_Center: {x: -0.000038837534, y: 0.0009820474, z: -0.008774472}
---- !u!114 &6828683753527520446
+--- !u!114 &7020556166365027432
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

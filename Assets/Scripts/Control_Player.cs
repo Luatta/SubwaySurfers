@@ -11,6 +11,10 @@ public class Control_Player : MonoBehaviour
     public Control_GameManager gameManager;
     // 游戏控制
     public Control_Game gameController;
+    // 倒计时模块
+    public Control_DoubleCoinCountdown doubleCoinProp;
+    // 倒计时面板
+    public GameObject doubleCountdown;
     //动画组件
     private Animator m_Anim;
     //游戏结束
@@ -105,6 +109,12 @@ public class Control_Player : MonoBehaviour
         else if (other.tag.Equals("Road"))
         {
             m_isJump = true; 
+        }
+        // 如果是双倍金币道具
+        else if (other.tag.Equals("DoubleCoin"))
+        {
+            doubleCountdown.SetActive(true);
+            doubleCoinProp.OnCountDownClick();
         }
     }
 }
