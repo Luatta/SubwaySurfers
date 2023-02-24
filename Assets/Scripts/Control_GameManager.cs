@@ -5,28 +5,28 @@ using UnityEngine;
 
 public class Control_GameManager : MonoBehaviour
 {
-    // 道路列表
+    // 道路列表  用于道路切换
     public List<Transform> roadList = new List<Transform>();
-    // 抵达点列表
+    // 抵达点列表  用于判断玩家到达指定位置触发道路切换
     public List<Transform> arrivePosList = new List<Transform>();
-    // 障碍物列表
+    // 障碍物所有模型的列表  
     public List<GameObject> objPrefabList = new List<GameObject>();
-    // 目前的障碍物
+    // 目前所有生成的障碍物
     Dictionary<string, List<GameObject>> objDict = new Dictionary<string, List<GameObject>>();
-    // 目前的金币
+    // 目前所有生成的金币
     Dictionary<string, List<GameObject>> coinDict = new Dictionary<string, List<GameObject>>();
-    // 金币
+    // 金币模型
     public GameObject coin; 
-    // 双倍金币
+    // 双倍金币模型
     public GameObject doublecoin; 
     // 道路间隔距离
     public int roadDistance;
     
-    // 障碍列表
+    // 障碍列表  用于辅助生成场景中的障碍物
     List<GameObject> prefabList = new List<GameObject>();
+    // 随机的障碍物坐标
     List<Vector3> posList = new List<Vector3>();
-    
-    // 金币列表
+    // 金币列表  用于辅助生成场景中的金币
     List<GameObject> coinList = new List<GameObject>();
 
     // Start is called before the first frame update
@@ -73,7 +73,7 @@ public class Control_GameManager : MonoBehaviour
     public void InitRoad(int index)
     {
         string roadName = roadList[index].name;
-        // 清空已有障碍物
+        // 清空已有障碍物和金币
         InitEmpty(roadName);
         
         // 添加障碍物
@@ -86,6 +86,7 @@ public class Control_GameManager : MonoBehaviour
     // 清空所有gameobject
     private void InitEmpty(string roadName)
     {
+        // 清空现有障碍物和金币
         foreach(GameObject obj in objDict[roadName])
         {
             Destroy(obj);
@@ -96,6 +97,7 @@ public class Control_GameManager : MonoBehaviour
             Destroy(item);
         }
         coinDict[roadName].Clear();
+        // 清空辅助列表
         prefabList.Clear();
         posList.Clear();
         coinList.Clear();
